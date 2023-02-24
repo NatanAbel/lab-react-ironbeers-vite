@@ -8,13 +8,17 @@ function BeerDetails() {
     const {beerId} = useParams()
 
     useEffect(()=>{
-
-        const fetchBeer = async () => {
-            const response = await axios.get(`https://ih-beers-api2.herokuapp.com/beers/${beerId}`)
-            console.log("response Details...",response.data)
-            setBeer(response.data)
+        try{
+            const fetchBeer = async () => {
+                const response = await axios.get(`https://ih-beers-api2.herokuapp.com/beers/${beerId}`)
+                console.log("response Details...",response.data)
+                setBeer(response.data)
+            }
+            fetchBeer()
+        }catch(err){
+            console.log("Beer Details not found",err)
         }
-        fetchBeer()
+        
     },[])
 
   return (

@@ -6,13 +6,17 @@ function RandomBeer() {
     const [randomBeer, setRandomBeer] = useState(null)
 
     useEffect(()=>{
-
-        const fetchRandomBeer = async () => {
-            const response = await axios.get(`https://ih-beers-api2.herokuapp.com/beers/random`)
-            console.log("response randomBeer...",response.data)
-            setRandomBeer(response.data)
+        try{
+            const fetchRandomBeer = async () => {
+                const response = await axios.get(`https://ih-beers-api2.herokuapp.com/beers/random`)
+                console.log("response randomBeer...",response.data)
+                setRandomBeer(response.data)
+            }
+            fetchRandomBeer()
+        }catch(err){
+            console.log("Random beer data is not fetched",err)
         }
-        fetchRandomBeer()
+        
     },[])
 
   return (
